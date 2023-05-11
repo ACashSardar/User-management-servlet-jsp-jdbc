@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		font-family: Monaco;
+		background: lavender;
+	}
+</style>
 </head>
 <body>
 	<div align="center">

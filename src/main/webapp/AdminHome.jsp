@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin page</title>
+<style type="text/css">
+body {
+	font-family: Monaco;
+	background: lavender;
+}
+</style>
 </head>
 <body>
 	<%
@@ -82,7 +88,9 @@
 					<td><c:out value="${u.role}" /></td>
 					<c:choose>
 						<c:when test='${u.role.equals("user")}'>
-							<td><button style="background: red; color: white">Delete</button></td>
+							<td><a href="Delete?id=${u.id}"
+								style="text-decoration: none;"><button
+										style="background: red; color: white">Delete</button></a></td>
 						</c:when>
 					</c:choose>
 				</tr>

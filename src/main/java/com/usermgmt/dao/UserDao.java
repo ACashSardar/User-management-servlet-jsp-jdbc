@@ -134,6 +134,12 @@ public class UserDao {
 			maxId = Math.max(maxId, user.getId());
 		return maxId + 1;
 	}
+	
+	public User getUserByEmail(String email) {
+		List<User> users = getAllUsers();
+		for(User user: users) if(user.getEmail().equals(email)) return user;
+		return null;
+	}
 
 	public User authenticate(String email, String password) {
 		List<User> users = getAllUsers();

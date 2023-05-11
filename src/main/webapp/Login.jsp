@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		font-family: Monaco;
+		background: lavender;
+	}
+</style>
 </head>
 <body>
 	<div align="center">
@@ -16,12 +22,12 @@
 				</caption>
 				<tr>
 					<td>Enter your email</td>
-					<td><input type="text" name="email" required="required"
+					<td><input type="text" name="email" placeholder="e.g xyz@gmail.com" required="required"
 						style="padding: 5px"></td>
 				</tr>
 				<tr>
 					<td>Enter your password</td>
-					<td><input type="text" name="password" required="required"
+					<td><input type="text" name="password" placeholder="password" required="required"
 						style="padding: 5px"></td>
 				</tr>
 				<tr>

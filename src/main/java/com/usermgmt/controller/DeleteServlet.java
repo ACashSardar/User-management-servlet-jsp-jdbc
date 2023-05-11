@@ -1,6 +1,8 @@
 package com.usermgmt.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +25,25 @@ public class DeleteServlet extends HttpServlet {
 		User user=dao.getUser(id);
 		
 		HttpSession session=req.getSession();
-		if(((String) session.getAttribute("email")).equals(user.getEmail())) {
+		String loggedInUserEmail=(String) session.getAttribute("email");
+		User loggedInUser=dao.getUserByEmail(loggedInUserEmail);
+		
+		if(loggedInUserEmail.equals(user.getEmail())) {
 			dao.deleteUser(id);
+			session.removeAttribute("email");
+			session.invalidate();
+			res.sendRedirect("Register.jsp");
 		}
-		session.removeAttribute("email");
-		session.invalidate();
-		res.sendRedirect("Register.jsp");
+		
+		else if(loggedInUser.getRole().equals("admin") && user.getRole().equals("user")){
+			dao.deleteUser(id);
+			List<User> userlist=dao.getAllUsers();
+			req.setAttribute("userlist", userlist);
+			req.setAttribute("user", loggedInUser);
+			req.getRequestDispatcher("AdminHome.jsp").forward(req, res);
+		}
+		PrintWriter obj=res.getWriter();
+		obj.println("Invalid Access..");
 	}
 	
 }
